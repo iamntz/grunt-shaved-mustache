@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://gitlab.fabvla.com/ionutzb/geox-2014.git"
+    "url": "git@github.com:iamntz/grunt-shaved-mustache.git"
   },
   "bugs": {
     "url": ""
