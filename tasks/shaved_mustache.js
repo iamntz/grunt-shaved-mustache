@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       files.src.forEach(function(file) {
         var src = grunt.file.read(file);
         var filename = options.defaultName(file);
-        content = src.replace(/\t+|\n|\r+/g, ' ');
+        content = src.replace(/(\t|\n|\r|\s)+/g, ' ');
         content = content.replace( /\'/g,'\\\'' );
         content = "'" + content + "';\n";
         output.push(nsInfo.namespace + "[" + JSON.stringify(filename) + "] = " + content  );
