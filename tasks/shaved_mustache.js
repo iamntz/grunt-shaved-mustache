@@ -12,7 +12,26 @@ module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
-  var helpers = require('grunt-lib-contrib').init(grunt);
+  var path = require('path');
+
+  var getNamespaceDeclaration = function(ns) {
+    var output = [];
+    var curPath = 'this';
+    if (ns !== 'this') {
+      var nsParts = ns.split('.');
+      nsParts.forEach(function(curPart, index) {
+        if (curPart !== 'this') {
+          curPath += '[' + JSON.stringify(curPart) + ']';
+          output.push(curPath + ' = ' + curPath + ' || {};');
+        }
+      });
+    }
+
+    return {
+      namespace: curPath,
+      declaration: output.join('\n')
+    };
+  };
 
   grunt.registerMultiTask('shaved_mustache', 'Make mustache templates re-usable in JS', function() {
     var options, nsInfo, content;
@@ -26,8 +45,7 @@ module.exports = function(grunt) {
       }
     });
 
-    nsInfo = helpers.getNamespaceDeclaration(options.namespace);
-
+    nsInfo = getNamespaceDeclaration(options.namespace);
 
     this.files.forEach(function(files) {
       output.push(nsInfo.namespace + ' = ' + nsInfo.namespace + ' || [];\n'  );
