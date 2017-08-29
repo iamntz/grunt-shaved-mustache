@@ -32,7 +32,6 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt": "~0.4.2",
-    "grunt-lib-contrib": "~0.6.1",
     "string-escape": "~0.3.0",
     "install": "~0.1.7",
     "npm": "~1.3.26"
